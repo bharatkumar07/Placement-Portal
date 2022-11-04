@@ -14,12 +14,8 @@
             <span>Placement Portal</span>
         </div>
         <div class="right_nav">
-            <a href="#"> Click here to login</a>
+            <a href="index.php"> Click here to logout</a>
         </div>
-    </div>
-
-    <div class="container">
-        <h1>Welcome To IITG Placement Portal</h1>
     </div>
 
     <footer>

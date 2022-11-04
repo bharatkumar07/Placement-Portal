@@ -1,3 +1,6 @@
+@import url('https://fonts.googleapis.com/css2?family=Lato:wght@300;400&family=Poppins:ital,wght@1,200&display=swap');
+
+
 *{
     margin: 0;
     padding: 0;
@@ -12,7 +15,7 @@
     font-size: 1.3em;
     height: 10vh;
     color: white;
-    padding:0 10px;
+    padding:0 12px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -32,12 +35,67 @@
 .right_nav a:hover{
     text-decoration: underline;
 }
-.container h1{
+.main_container{
+    height: 80vh;
+    background-color: #e2f2ff;
+}
+.main_container h1{
     color:darkslategray;
     padding: 20px 0;
     text-align: center;
     font-family: "Montserrat", -apple-system, system-ui, BlinkMacSystemFont, "Segoe UI", Roboto, "Helvetica Neue", Arial, sans-serif;
 }
+
+.main_box{
+    position: relative;
+    width: 32vw;
+    height: 45vh;
+    margin: auto;
+    background-color: white;
+    border: 1px solid rgb(49, 48, 48);
+    padding-left: 15px;
+    padding-top: 7vh;
+    font-size: 1.5em;
+    font-family: 'lato', sans-serif;
+    font-weight: bold;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+}
+.select_role{
+    position: absolute;
+    font-weight: 400;
+    font-size: 1.25rem;
+    line-height: 2.25rem;
+    padding-bottom: 17vh;
+    width: calc(100% - 15px);
+    bottom: 0;
+}
+
+input[type="radio"] {
+    -webkit-transform: scale(1.2); 
+    transform: scale(1.2);
+}
+
+.select_role label{
+    margin-left: 3px;
+}
+
+.select_role button{
+    position: absolute;
+    font-size: 1.02rem;
+    background-color: #0b63c0;
+    padding: 6px 15px;
+    color: white;
+    margin: 20px;
+    border: 0;
+    border-radius: 3px;
+    right: 0;
+    bottom: 0;
+}
+.select_role button:hover{
+    cursor: pointer;
+    
+}
+
 footer{
     position: absolute;
     width: 100%;
@@ -45,5 +103,59 @@ footer{
     bottom: 0;
     color: white;
     background-color:#0b63c0;
-    padding: 5px;
+    padding: 10px;
+    font-size: large;
+}
+
+
+
+/* For student login and signup */
+.login_box form{
+    /* align-items: center; */
+    text-align: center;
+}
+.btn{
+    /* position: absolute; */
+    font-size: 1.02rem;
+    background-color: #0b63c0;
+    padding: 6px 15px;
+    color: white;
+    margin: 5px;
+    border: 0;
+    border-radius: 4px;
+    /* right: 0;
+    bottom: 0; */
+    width:60%;
+}
+.student_login{
+    font-size: 1.2rem;
+    font-weight: normal;
+    margin: 10px 0;
+}
+.student_login input{
+    width: 60%;
+    font-size: 1.05rem;
+    border-radius: 5px;
+    padding: 4px;
+}
+.signup a{
+    text-decoration: none;
+    color: rgb(0, 102, 255);
+}
+.signup a:hover{
+    text-decoration: underline;
+}
+
+@media only screen and (max-width: 600px){
+    .main_box{
+        font-size: 1.3rem;
+        width: 60vw;
+        height: 50vh;
+    }
+    .main_container h1{
+        font-size: 1.6rem;
+    }
+    .right_nav{
+        font-size: 1.05rem;
+    }
 }
