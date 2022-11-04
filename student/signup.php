@@ -120,7 +120,7 @@ $conn = null;
   <form action="" method="post">
       <div class="student_login">
         <!-- <label for="email">email</label> -->
-        <input type="email" name="email" id="email" placeholder="Email">
+        <input type="email" name="email" id="email" placeholder="IITG Mail">
         <span> <?php echo "<br>"."<h5>$email_err</h5>"; ?></span>
       </div>
       <div class="student_login">

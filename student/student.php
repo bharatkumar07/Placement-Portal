@@ -12,7 +12,7 @@ require_once "../config.php";
 //to get no_application from student table
 $login_email = $_SESSION['email'];
 $no_application = "";
-$sql = "SELECT no_application FROM student WHERE s_email = '$login_email'";
+$sql = "SELECT no_application FROM student WHERE s_iitgmail = '$login_email'";
 $result = $conn->prepare($sql);
 $result->execute();
     if($row = $result->fetch()){

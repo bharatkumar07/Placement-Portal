@@ -9,19 +9,21 @@ if(!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !==true)
 
 require_once "../config.php";
 
-//to get no_application from student table
 $login_email = $_SESSION['email'];
 $no_application = "";
-$sql = "SELECT no_application FROM student WHERE s_email = '$login_email'";
-$result = $conn->prepare($sql);
-$result->execute();
-    while($row = $result->fetch()){
-        $no_application = $row['no_application'];
-    }
+$hide = "";
 
-
-
-$firstname = $lastname = $iitgmail = $email = $rollno = $mobile = $gender = $dob = $department = $course = $cpi = "";
+$firstname = "Enter First Name";
+$lastname = "Enter Last Name";
+$iitgmail = $login_email;
+$email = "Enter your personal email";
+$rollno = "Enter your Roll No";
+$mobile = "Enter your Mobile No";
+$gender = "";
+$dob = "Enter Date of Birth";
+$department = "Choose your Department";
+$course =  "Choose Your Course Name";
+$cpi = "Enter your cpi";
 if ($_SERVER['REQUEST_METHOD'] == "POST"){
 
     $firstname = trim($_POST["first_name"]);
@@ -41,10 +43,30 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
     {
         $stmt->execute();
     }
-    // mysqli_stmt_close($stmt);
-$conn = null;
+    $stmt = null;
 }
 
+$sql = "SELECT no_application, fname, lname, s_iitgmail, s_email, rollno, mobile, gender, dob, dept, course, cpi FROM student WHERE s_iitgmail = '$login_email'";
+$result = $conn->prepare($sql);
+$result->execute();
+    if($row = $result->fetch()){
+        $no_application = $row['no_application'];
+        $hide = "style='display: none'";
+
+        $firstname = $row["fname"];
+        $lastname = $row["lname"];
+        $iitgmail = $row["s_iitgmail"];
+        $email = $row["s_email"];
+        $rollno = $row["rollno"];
+        $mobile = $row["mobile"];
+        $gender = $row["gender"];
+        $dob = $row["dob"];
+        $department = $row["dept"];
+        $course = $row["course"];
+        $cpi = $row["cpi"];
+    }
+$result = null;
+$conn = null;
 ?>
 
 <!DOCTYPE html>
@@ -101,37 +123,37 @@ $conn = null;
                         <div class="student_name">
                             <div class="first_name">
                                 <label><div>First Name</div></label>
-                                <input type="text" name="first_name" placeholder="Enter First Name" required>
+                                <input type="text" name="first_name" placeholder='<?php echo $firstname ?>' required>
                             </div>
                             <div class="last_name">
                                 <label><div>Last Name</div></label>
-                                <input type="text" name="last_name" placeholder="Enter Last Name">
+                                <input type="text" name="last_name" placeholder='<?php echo $lastname ?>'>
                             </div>
                         </div>
                         <div class="student_email">
                             <div class="iitg_mail">
                                 <label><div>IITG Mail</div></label>
-                                <input type="email" name="iitg_mail" placeholder="Enter your IITG mail" required>
+                                <input type="email" name="iitg_mail" value='<?php echo $login_email ?>' readonly>
                             </div>
                             <div class="personal_email">
                                 <label><div>Personal Email</div></label>
-                                <input type="email" name="email" placeholder="Enter your personal email" required>
+                                <input type="email" name="email" placeholder='<?php echo $email ?>' required>
                             </div>
                         </div>
                         <div class="rollno_mobile">
                             <div class="roll_no">
                                 <label><div>Roll No</div></label>
-                                <input type="number" name="roll_no" placeholder="Enter your Roll No" required required>
+                                <input type="number" name="roll_no" placeholder='<?php echo $rollno ?>' required>
                             </div>
                             <div class="mobile">
                                 <label><div>Mobile Number</div></label>
-                                <input type="number" name="mobile" placeholder="Enter your Mobile No" required required>
+                                <input type="number" name="mobile" placeholder='<?php echo $mobile ?>' required>
                             </div>
                         </div>
                         <div class="gender_dob">
                             <div class="gender" style="display:inline;">
                                 <label style="font-size:16px;">Gender</label><br>
-                                <input type="radio" name="gender" value="male">
+                                <input type="radio" name="gender" value="male" required>
                                 <label for="male">Male</label>
                                 <input type="radio" name="gender" value="female">
                                 <label for="female">Female</label>
@@ -140,7 +162,7 @@ $conn = null;
                             </div>
                             <div class="dob">
                                 <label><div>Date of Birth</div></label>
-                                <input type="date" name="dob" placeholder="Enter your dob" required>
+                                <input type="text" name="dob" placeholder='<?php echo $dob ?>' onfocus="(this.type='date')" onblur="(this.type='text')" required>
                             </div>
                         </div>
                     </div>
@@ -152,24 +174,48 @@ $conn = null;
                         <div class="dept_course">
                             <div class="department">
                                 <label><div>Department</div></label>
-                                <input type="text" name="department" placeholder="Enter your Department" required>
+                                <select name="department" required>
+                                    <option value="" disabled selected><?php echo $department ?></option>
+                                    <option value="Mathematics">Mathematics</option>
+                                    <option value="Computer Science and Engineering">Computer Science and Engineering</option>
+                                    <option value="Physics">Physics</option>
+                                    <option value="Chemistry">Chemistry</option>
+                                    <option value="Electronics & Electrical Engineering">Electronics & Electrical Engineering</option>
+                                    <option value="Mechanical Engineering">Mechanical Engineering</option>
+                                    <option value="Civil Engineering">Civil Engineering</option>
+                                    <option value="Design">Design</option>
+                                    <option value="Chemical Engineering">Chemical Engineering</option>
+                                </select>
                             </div>
                             <div class="course">
                                 <label><div>Course</div></label>
-                                <input type="text" name="course" placeholder="Enter Your Course Name" required>
+                                <select name="course" required>
+                                    <option value="" disabled selected><?php echo $course ?></option>
+                                    <option value="MSc Mathematics & Computing">MSc Mathematics & Computing</option>
+                                    <option value="MSc Physics">MSc Physics</option>
+                                    <option value="MSc Chemistry">MSc Chemistry</option>
+                                    <option value="BTech CSE">BTech CSE</option>
+                                    <option value="BTech EEE">BTech EEE</option>
+                                    <option value="BTech Mechanical Engineering">BTech Mechanical Engineering</option>
+                                    <option value="BTech Civil Engineering">BTech Civil Engineering</option>
+                                    <option value="Design (BDes)">Design (BDes)</option>
+                                    <option value="BTech Chemical Engineering">BTechChemical Engineering</option>
+                                    <option value="MTech CSE">MTech CSE</option>
+                                    <option value="MTech EEE">MTech EEE</option>
+                                </select>
                             </div>
                         </div>
                         <div class="cpi_">
                             <div class="cpi">
                                 <label><div>CPI</div></label>
-                                <input type="text" name="cpi" placeholder="Enter your cpi" required>
+                                <input type="text" name="cpi" placeholder='<?php echo $cpi ?>' required>
                             </div>
                             
                         </div>
                         
                     </div>
                     <div>
-                        <button class="btn" type="submit">save changes</button>
+                        <button class="btn" type="submit" <?php echo $hide?>>save changes</button>
                     </div>
                 </div>
             </form>

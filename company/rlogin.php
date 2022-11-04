@@ -3,7 +3,7 @@
 session_start();
 
 // check if the user is already logged in
-if(isset($_SESSION['email']))
+if(isset($_SESSION['c_email']))
 {
     header("location: recruiter.php");
     exit;
@@ -27,7 +27,7 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
 
 if(empty($err))
 {
-    $sql = "SELECT id, s_email, s_password FROM student_login WHERE s_email = '$email'";
+    $sql = "SELECT Cid, c_email, c_password FROM company_login WHERE c_email = '$email'";
     $stmt = $conn->prepare($sql);
     
     // Try to execute this statement
@@ -35,11 +35,11 @@ if(empty($err))
         // mysqli_stmt_store_result($stmt);
         if($stmt->rowCount() == 1)
                 {
-                    // mysqli_stmt_bind_result($stmt, $id, $email, $hashed_password);
+                    // mysqli_stmt_bind_result($stmt, $Cid, $email, $hashed_password);
                     if($row=$stmt->fetch()){ //for each result, do the following
-                      $id=$row['id'];
-                      $email=$row['s_email'];
-                      $hashed_password=$row['s_password'];
+                      $Cid=$row['Cid'];
+                      $email=$row['c_email'];
+                      $hashed_password=$row['c_password'];
                  }
                     
                     if($stmt->fetch())
@@ -49,9 +49,9 @@ if(empty($err))
                         {
                             // this means the password is corrct. Allow user to login
                             session_start();
-                            $_SESSION["email"] = $email;
-                            $_SESSION["id"] = $id;
-                            $_SESSION["loggedin"] = true;
+                            $_SESSION["c_email"] = $email;
+                            $_SESSION["Cid"] = $Cid;
+                            $_SESSION["c_loggedin"] = true;
 
                             //Redirect user to welcome page
                             header("location: recruiter.php");
@@ -104,11 +104,11 @@ if(empty($err))
   <h3 style="padding-left:20%;" >Please Login Here:</h3>
 
   <form action="" method="post">
-    <div class="student_login">
+    <div class="company_login">
       <!-- <label for="email">email</label> -->
       <input type="email" name="email" id="email" placeholder="email">
     </div>
-    <div class="student_login">
+    <div class="company_login">
       <!-- <label for="password">Password</label> -->
       <input type="password" name="password" id="password" placeholder="Password">
       <span> <?php echo"<br>". "<h5>$err</h5>"?></span>

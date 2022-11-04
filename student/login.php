@@ -106,7 +106,7 @@ if(empty($err))
   <form action="" method="post">
     <div class="student_login">
       <!-- <label for="email">email</label> -->
-      <input type="email" name="email" id="email" placeholder="email">
+      <input type="email" name="email" id="email" placeholder="IITG Mail">
     </div>
     <div class="student_login">
       <!-- <label for="password">Password</label> -->

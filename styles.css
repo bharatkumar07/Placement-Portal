@@ -109,7 +109,7 @@ footer{
 
 
 
-/* For student login and signup */
+/* For student and company login and signup */
 .login_box form{
     /* align-items: center; */
     text-align: center;
@@ -127,12 +127,18 @@ footer{
     bottom: 0; */
     width:60%;
 }
-.student_login{
+.student_login, .company_login{
     font-size: 1.2rem;
     font-weight: normal;
     margin: 10px 0;
 }
 .student_login input{
+    width: 60%;
+    font-size: 1.05rem;
+    border-radius: 5px;
+    padding: 4px;
+}
+.company_login input{
     width: 60%;
     font-size: 1.05rem;
     border-radius: 5px;
@@ -158,4 +164,5 @@ footer{
     .right_nav{
         font-size: 1.05rem;
     }
+    
 }

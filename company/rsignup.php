@@ -11,11 +11,11 @@ if ($_SERVER['REQUEST_METHOD'] == "POST"){
         $email_err = "email cannot be blank";
     }
     else{
-        $sql = "SELECT id FROM student_login WHERE s_email = :s_email";
+        $sql = "SELECT Cid FROM company_login WHERE c_email = :c_email";
         $stmt = $conn->prepare($sql);
         if($stmt)
         {
-            $stmt->bindParam(":s_email", $param_email);
+            $stmt->bindParam(":c_email", $param_email);
 
             // Set the value of param email
             $param_email = trim($_POST['email']);
@@ -61,12 +61,12 @@ if(trim($_POST['password']) !=  trim($_POST['confirm_password'])){
 // If there were no errors, go ahead and insert into the database
 if(empty($email_err) && empty($password_err) && empty($confirm_password_err))
 {
-    $sql = "INSERT INTO student_login (s_email, s_password) VALUES (:s_email, :s_password)";
+    $sql = "INSERT INTO company_login (c_email, c_password) VALUES (:c_email, :c_password)";
     $stmt = $conn->prepare($sql);
     if ($stmt)
     {
-        $stmt->bindParam(":s_email", $param_email);
-        $stmt->bindParam(":s_password", $param_password);
+        $stmt->bindParam(":c_email", $param_email);
+        $stmt->bindParam(":c_password", $param_password);
 
         // Set these parameters
         $param_email = $email;
@@ -118,17 +118,17 @@ $conn = null;
   <div class="main_box login_box" style="padding-top: 4vh;">
   <h3 style="padding-left:20%;">Please Signup Here:</h3>
   <form action="" method="post">
-      <div class="student_login">
+      <div class="company_login">
         <!-- <label for="email">email</label> -->
         <input type="email" name="email" id="email" placeholder="Email">
         <span> <?php echo "<br>"."<h5>$email_err</h5>"; ?></span>
       </div>
-      <div class="student_login">
+      <div class="company_login">
         <!-- <label for="password">Password</label> -->
         <input type="password" name ="password" id="password" placeholder="Password">
         <span> <?php echo "<br>"."<h5>$password_err</h5>"; ?></span>
       </div>
-    <div class="student_login">
+    <div class="company_login">
         <!-- <label for="confirm_password">Confirm Password</label> -->
         <input type="password" name ="confirm_password" id="confirm_password" placeholder="Confirm Password">
         <span> <?php echo "<br>". "<h5>$confirm_password_err</h5>"; ?></span>
