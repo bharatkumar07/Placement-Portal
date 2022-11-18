@@ -65,6 +65,8 @@ $result->execute();
         while($row1 = $result1->fetch()){
             $location = $location . $row1['location'] . " ";
         }
+
+        $_SESSION['Cid']=$cid;
     }
 $result = null;
 $conn = null;
@@ -90,13 +92,13 @@ $conn = null;
                     <a href="recruiter.php">Home</a>
                 </li>
                 <li class="job">
-                    <a href="job.php">Job Details</a>
+                    <a href="job.php">Fill Job Details</a>
                 </li>
-                <li class="preference_list">
-                    <a href="#">Preference List</a> 
+                <li class="job_details">
+                    <a href="job_details.php">Job Details</a>
                 </li>
                 <li class="job_application">
-                    <a href="#">Job Apllication</a> 
+                    <a href="job_applied.php">Job Apllication</a> 
                 </li>
                 <li class="user_guide">
                     <a href="#">User Guide</a>

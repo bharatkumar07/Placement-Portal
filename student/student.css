@@ -92,6 +92,14 @@
     margin: 0 15px;
     right:0;
 }
+.home_info_list{
+    list-style: none;
+    font-size: 1.25rem;
+    margin-top: 50px;
+}
+.home_info_list li{
+    margin: 20px;
+}
 
 /* For registration.php */
 .profile_info, .home_info{

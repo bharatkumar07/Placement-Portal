@@ -50,7 +50,7 @@ if(empty($err))
                             // this means the password is corrct. Allow user to login
                             session_start();
                             $_SESSION["c_email"] = $email;
-                            $_SESSION["Cid"] = $Cid;
+                            // $_SESSION["Cid"] = $Cid; 
                             $_SESSION["c_loggedin"] = true;
 
                             //Redirect user to welcome page

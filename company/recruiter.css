@@ -138,7 +138,7 @@ hr{
     font-size: 0.9rem;
 }
 
-input{
+input, select{
     font-size: 1.05rem;
     border-radius: 5px;
     padding: 4px;

@@ -85,16 +85,16 @@ $conn = null;
             <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
             <ul class="left_list">
                 <li class="profile">
-                    <a href="student.php">Profile</a>
+                    <a href="student.php">Home</a>
                 </li>
                 <li class="registration">
                     <a href="registration.php" style="background-color:skyblue;">Registration</a>
                 </li>
-                <li class="preference_list">
+                <!-- <li class="preference_list">
                     <a href="#">Preference List</a> 
-                </li>
+                </li> -->
                 <li class="job_application">
-                    <a href="#">Job Apllication</a> 
+                    <a href="jobapplication.php">Job Apllication</a> 
                 </li>
                 <li class="user_guide">
                     <a href="#">User Guide</a>
@@ -153,12 +153,14 @@ $conn = null;
                         <div class="gender_dob">
                             <div class="gender" style="display:inline;">
                                 <label style="font-size:16px;">Gender</label><br>
-                                <input type="radio" name="gender" value="male" required>
-                                <label for="male">Male</label>
-                                <input type="radio" name="gender" value="female">
-                                <label for="female">Female</label>
-                                <input type="radio" name="gender" value="other">
-                                <label for="other">Other</label>
+                                <?php if($hide) echo "<input type='text' placeholder =$gender >"
+                                ?>
+                                <input type="radio" name="gender" value='male' <?php echo $hide?> required>
+                                <label for="male" <?php echo $hide?>>Male</label>
+                                <input type="radio" name="gender" value="female" <?php echo $hide?>>
+                                <label for="female" <?php echo $hide?>>Female</label>
+                                <input type="radio" name="gender" value="other" <?php echo $hide?>>
+                                <label for="other" <?php echo $hide?>>Other</label>
                             </div>
                             <div class="dob">
                                 <label><div>Date of Birth</div></label>
